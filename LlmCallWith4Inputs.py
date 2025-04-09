@@ -70,7 +70,7 @@ def fetch_record_with_fks(dbname, schema_info, table_name, primary_key_value):
                     related_data[related_table] = None
 
 
-    print(f"related_data: {related_data}")
+    #print(f"related_data: {related_data}")
     record_dict['related_data'] = related_data
 
     # Close the cursor and connection
@@ -98,9 +98,9 @@ def get_filtered_schema_info_for_primary_tables(conn, table_name):
     """, (table_name,))
     for column in cursor.fetchall():
         schema_info[table_name]['fields'][column.column_name] = {
-            'type': column.data_type,
-            'default': column.column_default,
-            'nullable': column.is_nullable == 'YES'
+            'type': str(column.data_type),
+            'default': str(column.column_default),
+            'nullable': str(column.is_nullable == 'YES')
         }
 
     # Fetch primary keys
@@ -114,7 +114,7 @@ def get_filtered_schema_info_for_primary_tables(conn, table_name):
         )
     """, (table_name, table_name))
     for row in cursor.fetchall():
-        schema_info[table_name]['primary_key'].append(row.column_name)
+        schema_info[table_name]['primary_key'].append(str(row.column_name))
 
     # Fetch foreign keys
     cursor.execute("""
@@ -130,8 +130,8 @@ def get_filtered_schema_info_for_primary_tables(conn, table_name):
         if fk.column_name not in schema_info[table_name]['foreign_keys']:
             schema_info[table_name]['foreign_keys'][fk.column_name] = []
         schema_info[table_name]['foreign_keys'][fk.column_name].append({
-            'table': fk.referenced_table,
-            'foreign_column': fk.referenced_column
+            'table': str(fk.referenced_table),
+            'foreign_column': str(fk.referenced_column)
         })
 
     # Fetch unique constraints
@@ -143,7 +143,7 @@ def get_filtered_schema_info_for_primary_tables(conn, table_name):
         WHERE tc.constraint_type = 'UNIQUE' AND tc.table_name = ?
     """, (table_name,))
     for row in cursor.fetchall():
-        schema_info[table_name]['constraints']['unique'].append(row.column_name)
+        schema_info[table_name]['constraints']['unique'].append(str(row.column_name))
 
     cursor.close()
     conn.close()
@@ -152,16 +152,26 @@ def get_filtered_schema_info_for_primary_tables(conn, table_name):
 
 
 def get_llm_response(input_data):
+    user = input_data["user_data"]["user_name"]
+    prompt_template = f"""
+    As {user}, a {input_data['user_data']['user_role']}, you're asking:
+    {input_data['user_input']}
     
-    prompt_template = """
-    Analyze the following data:
-    User Data: {user_data}
-    Business Rules: {business_rule}
-    Schema Information : {schema_info}
-    Work Order Details: {data_object}
-    User Query: {user_input}
-    Provide a comprehensive response to User Query based on the above information.
+    Considering the provided Work Order details and business rules related to your role, here's a detailed analysis:
+    Business Rules: {{business_rule}}
+    Schema Information: {{schema_info}}
+    Work Order Details: {{data_object}}
     """
+    
+    # prompt_template = """
+    # Analyze the following data:
+    # User Data: {user_data}
+    # Business Rules: {business_rule}
+    # Schema Information : {schema_info}
+    # Work Order Details: {data_object}
+    # User Query: {user_input}
+    # Provide a comprehensive response to User Query based on the above information.
+    # """
 
     prompt = PromptTemplate.from_template(prompt_template)
     #parser = PydanticOutputParser(pydantic_object=CustomData)
