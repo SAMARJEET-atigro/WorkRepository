@@ -157,7 +157,7 @@ def get_llm_response(data: CustomData):
 
     prompt = PromptTemplate.from_template(prompt_template)
     #parser = PydanticOutputParser(pydantic_object=CustomData)
-    llm = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key = "")
+    llm = ChatOpenAI(model="gpt-4", temperature=0, openai_api_key = "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")
 
     chain = prompt | llm
 
@@ -268,8 +268,8 @@ def main():
     }
     data_object = fetch_record_with_fks(dbname, schema_info, table_name, primary_key_value)
     print("Fetched Data Object:", data_object)
-    #user_data_model = UserDataObject(users=[User(**user) for user in user_data['users']])
-    user_data_model = user_data['users'][0]
+    user_data_model = UserDataObject(users=[User(**user) for user in user_data['users']])
+    #user_data_model = user_data['users'][0]
     business_rules_model = BusinessRulesObject(Work_Order=BusinessRule(
     Object_Description=business_rules['Work Order']['Object Description'],
     Object_Business_Rules=business_rules['Work Order']['Object Business Rules']
