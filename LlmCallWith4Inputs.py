@@ -1,15 +1,9 @@
 from langchain.prompts import PromptTemplate
-from langchain.output_parsers import PydanticOutputParser
-from langchain_core.output_parsers import JsonOutputParser
-
-
 from langchain_openai import ChatOpenAI
-import json
-from pydantic import BaseModel, Field
-from typing import List, Optional, Dict
 import pyodbc
-from datetime import datetime
 from decimal import Decimal
+import os
+
       
 def get_schema_of_database(db_name):
     pass
@@ -172,11 +166,9 @@ def get_llm_response(input_data):
     # User Query: {user_input}
     # Provide a comprehensive response to User Query based on the above information.
     # """
-
+    key = "" 
     prompt = PromptTemplate.from_template(prompt_template)
-    #parser = PydanticOutputParser(pydantic_object=CustomData)
-    llm = ChatOpenAI(model="gpt-4", temperature=0,openai_api_key = "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")
-
+    llm = ChatOpenAI(model="gpt-4", temperature=0,openai_api_key = key)
     chain = prompt | llm
 
     try:
