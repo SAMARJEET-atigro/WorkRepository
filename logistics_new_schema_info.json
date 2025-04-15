@@ -1,0 +1,1232 @@
+{
+    "Locations": {
+        "fields": {
+            "LocationID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "LocationTypeID": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "JobID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "WarehouseID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "VendorID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "LocationID"
+        ],
+        "foreign_keys": {
+            "JobID": [
+                {
+                    "table": "Jobs",
+                    "foreign_column": "JobID"
+                }
+            ],
+            "VendorID": [
+                {
+                    "table": "Vendors",
+                    "foreign_column": "VendorID"
+                }
+            ],
+            "WarehouseID": [
+                {
+                    "table": "Warehouses",
+                    "foreign_column": "WarehouseID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Vendors": {
+        "fields": {
+            "VendorID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "VendorName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "VendorAddress1": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "VendorAddress2": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "VendorCity": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "VendorState": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "VendorZip": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "VendorID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "TimeTracking_Hours": {
+        "fields": {
+            "EmployeeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "Date": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "Hours": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "TypeofTime": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "ChargetoJobTF": {
+                "type": "bit",
+                "default": None,
+                "Noneable": False
+            },
+            "ServiceOrderID": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "WorkOrderID": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "FromTime": {
+                "type": "time",
+                "default": None,
+                "Noneable": True
+            },
+            "ToTime": {
+                "type": "time",
+                "default": None,
+                "Noneable": True
+            },
+            "TaskName": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [],
+        "foreign_keys": {
+            "EmployeeID": [
+                {
+                    "table": "Employees",
+                    "foreign_column": "EmployeeID"
+                },
+                {
+                    "table": "ServiceOrderTickets",
+                    "foreign_column": "ServiceOrderID"
+                },
+                {
+                    "table": "WorkOrders",
+                    "foreign_column": "WorkOrderID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "TimeTracking_Days": {
+        "fields": {
+            "Date": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "EmployeeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "TypeofTimeifOff": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "StartTime": {
+                "type": "time",
+                "default": None,
+                "Noneable": True
+            },
+            "EndTime": {
+                "type": "time",
+                "default": None,
+                "Noneable": True
+            },
+            "TotalBreakTime": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "TotalWorkedHours": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [],
+        "foreign_keys": {
+            "EmployeeID": [
+                {
+                    "table": "Employees",
+                    "foreign_column": "EmployeeID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "EquipmentInventory": {
+        "fields": {
+            "EquipmentID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EquipmentModelID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "WarehouseID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "JobID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "InventoryQty": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "DateofPurchase": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "PurchasePrice": {
+                "type": "money",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EquipmentID"
+        ],
+        "foreign_keys": {
+            "EquipmentModelID": [
+                {
+                    "table": "EquipmentCategory",
+                    "foreign_column": "EquipmentCategoryID"
+                }
+            ],
+            "WarehouseID": [
+                {
+                    "table": "Warehouses",
+                    "foreign_column": "WarehouseID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "WorkOrders": {
+        "fields": {
+            "WorkOrderID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EquipmentID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "Status": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "DateCreated": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "DateClosed": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "ClosingStateofEquipment": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "SupervisingEmployeeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "WorkOrderID"
+        ],
+        "foreign_keys": {
+            "SupervisingEmployeeID": [
+                {
+                    "table": "Employees",
+                    "foreign_column": "EmployeeID"
+                }
+            ],
+            "EquipmentID": [
+                {
+                    "table": "EquipmentInventory",
+                    "foreign_column": "EquipmentID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Employees": {
+        "fields": {
+            "EmployeeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EmployeeFirstName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "EmployeeLastName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "EmployeeTypeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "WarehouseID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "HourlyRate": {
+                "type": "money",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EmployeeID"
+        ],
+        "foreign_keys": {
+            "EmployeeTypeID": [
+                {
+                    "table": "EmployeeType",
+                    "foreign_column": "EmployeeTypeID"
+                }
+            ],
+            "WarehouseID": [
+                {
+                    "table": "Warehouses",
+                    "foreign_column": "WarehouseID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "ServiceOrderTickets": {
+        "fields": {
+            "ServiceOrderID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "ServiceOrderTypeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "Status": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "DateCreated": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "DateClosedCancelled": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "FromLocationID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "ToLocationID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "ServiceOrderID"
+        ],
+        "foreign_keys": {
+            "FromLocationID": [
+                {
+                    "table": "Locations",
+                    "foreign_column": "LocationID"
+                }
+            ],
+            "ToLocationID": [
+                {
+                    "table": "Locations",
+                    "foreign_column": "LocationID"
+                }
+            ],
+            "ServiceOrderTypeID": [
+                {
+                    "table": "ServiceOrderTypes",
+                    "foreign_column": "ServiceOrderTypeID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "ServiceOrderTicketDetails": {
+        "fields": {
+            "ServiceOrderTicketID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "ServiceOrderID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "TechnicianID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "HoursWorked": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "Task": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "ServiceOrderTicketID"
+        ],
+        "foreign_keys": {
+            "TechnicianID": [
+                {
+                    "table": "Employees",
+                    "foreign_column": "EmployeeID"
+                }
+            ],
+            "ServiceOrderID": [
+                {
+                    "table": "ServiceOrderTickets",
+                    "foreign_column": "ServiceOrderID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "aaims_work_order": {
+        "fields": {
+            "id": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": False
+            },
+            "equipment_no": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "work_order_name": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "wo_status": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            },
+            "date_created": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "date_closed": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "assigned_yard": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "aaims_work_order_details": {
+        "fields": {
+            "id": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": False
+            },
+            "work_order_id": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            },
+            "special_instructions": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            },
+            "dispatch_date": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "supervising_employee_id": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "aaims_yards": {
+        "fields": {
+            "id": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            },
+            "yard_name": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            },
+            "yard_type": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            },
+            "yard_branch_id": {
+                "type": "nchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "EmployeeType": {
+        "fields": {
+            "EmployeeTypeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EmployeeType": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EmployeeTypeID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "EquipmentCategory": {
+        "fields": {
+            "EquipmentCategoryID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EquipmentCategoryName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EquipmentCategoryID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "EquipmentModels": {
+        "fields": {
+            "EquipmentModelID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EquipmentCategoryID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "ManufacturerID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "ProductName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Description": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Capacity": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "DIMENSIONS": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "ENGINE": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "PERFORMANCE": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "PLATFORM": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Tires": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "UserManual": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "General": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "HydraulicSystem": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "TankCapacity": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Transmission": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EquipmentModelID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "EquipmentModelxParts": {
+        "fields": {
+            "ID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EquipmentModelID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "PartID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "ID"
+        ],
+        "foreign_keys": {
+            "EquipmentModelID": [
+                {
+                    "table": "EquipmentModels",
+                    "foreign_column": "EquipmentModelID"
+                }
+            ],
+            "PartID": [
+                {
+                    "table": "Parts",
+                    "foreign_column": "PartID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Jobs": {
+        "fields": {
+            "JobID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "JobName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "NearestWarehouseID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "JobAddress": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "JobCity": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "JobState": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "JobZip": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Latitude": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "Longitude": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "JobID"
+        ],
+        "foreign_keys": {
+            "NearestWarehouseID": [
+                {
+                    "table": "Warehouses",
+                    "foreign_column": "WarehouseID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "MaintenanceTasks": {
+        "fields": {
+            "MaintenanceTaskID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "MaintenanceTask": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "MaintenanceTaskID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Manufacturer": {
+        "fields": {
+            "ManufacturerID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "ManufacturerName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "ManufacturerID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Parts": {
+        "fields": {
+            "PartID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "PartNo": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Description": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "ListPrice": {
+                "type": "money",
+                "default": None,
+                "Noneable": True
+            },
+            "Wt_kg": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "W_mm": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "H_mm": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "L_mm": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "PartID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "PartsInventory": {
+        "fields": {
+            "ID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "PartID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "WarehouseId": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "InventoryQty": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "ID"
+        ],
+        "foreign_keys": {
+            "PartID": [
+                {
+                    "table": "Parts",
+                    "foreign_column": "PartID"
+                }
+            ],
+            "WarehouseId": [
+                {
+                    "table": "Warehouses",
+                    "foreign_column": "WarehouseID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "ServiceOrderTypes": {
+        "fields": {
+            "ServiceOrderTypeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "ServiceOrderType": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "ServiceOrderTypeID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Warehouses": {
+        "fields": {
+            "WarehouseID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "WarehouseName": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "WarehouseAddress": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "City": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "State": {
+                "type": "nvarchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Zip": {
+                "type": "varchar",
+                "default": None,
+                "Noneable": True
+            },
+            "Latitude": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "Longitude": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "WarehouseID"
+        ],
+        "foreign_keys": {},
+        "constraints": {
+            "unique": []
+        }
+    },
+    "WorkOrderDetails": {
+        "fields": {
+            "WorkOrderDetailID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "WorkOrderID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "MaintenanceTaskID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "TechnicianID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "HoursWorked": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "PartID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "WorkOrderDetailID"
+        ],
+        "foreign_keys": {
+            "WorkOrderID": [
+                {
+                    "table": "WorkOrders",
+                    "foreign_column": "WorkOrderID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "EstimateDetails": {
+        "fields": {
+            "EstimateDetailID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "EstimateID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "MaintenanceTaskID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "EstHoursWorked": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "PartID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "TotalPartCost": {
+                "type": "money",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EstimateDetailID"
+        ],
+        "foreign_keys": {
+            "EstimateID": [
+                {
+                    "table": "Estimates",
+                    "foreign_column": "EstimateID"
+                }
+            ],
+            "MaintenanceTaskID": [
+                {
+                    "table": "MaintenanceTasks",
+                    "foreign_column": "MaintenanceTaskID"
+                }
+            ],
+            "PartID": [
+                {
+                    "table": "Parts",
+                    "foreign_column": "PartID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    },
+    "Estimates": {
+        "fields": {
+            "EstimateID": {
+                "type": "int",
+                "default": None,
+                "Noneable": False
+            },
+            "DateCreated": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "DateApproved": {
+                "type": "datetime",
+                "default": None,
+                "Noneable": True
+            },
+            "ApprovedTF": {
+                "type": "bit",
+                "default": None,
+                "Noneable": False
+            },
+            "ApprovedbyEmployeeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            },
+            "TotalEstimatedCost": {
+                "type": "float",
+                "default": None,
+                "Noneable": True
+            },
+            "EstimatedbyEmployeeID": {
+                "type": "int",
+                "default": None,
+                "Noneable": True
+            }
+        },
+        "primary_key": [
+            "EstimateID"
+        ],
+        "foreign_keys": {
+            "ApprovedbyEmployeeID": [
+                {
+                    "table": "Employees",
+                    "foreign_column": "EmployeeID"
+                }
+            ],
+            "EstimatedbyEmployeeID": [
+                {
+                    "table": "Employees",
+                    "foreign_column": "EmployeeID"
+                }
+            ]
+        },
+        "constraints": {
+            "unique": []
+        }
+    }
+}
