@@ -77,16 +77,17 @@ def get_full_schema_info(conn):
 
 # Connect and run
 if __name__ == "__main__":
+    db_name="WTBackend-logistic"
     conn = pyodbc.connect(
         'DRIVER={ODBC Driver 17 for SQL Server};'
         'SERVER=atigroai.database.windows.net;'
-        'DATABASE=logistics_new;'
+        'DATABASE='+db_name+';'
         'UID=logistic;'
         'PWD=4$P)K0]Ti|Rv5n98'
     )
     
     schema = get_full_schema_info(conn)
-    with open("D:/Python Scripts/WorkRepository/logistics_new_schema_info.json", "w", encoding="utf-8") as f:
+    with open(f"D:/Python Scripts/WorkRepository/{db_name}_schema_info.json", "w", encoding="utf-8") as f:
         json.dump(schema, f, indent=4)
     print("Schema has been written to schema_info.json")
     conn.close()
